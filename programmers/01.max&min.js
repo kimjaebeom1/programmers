@@ -10,3 +10,6 @@ function solution(s) {
     let answer = min + " " + max
     return answer
   }
+
+
+  

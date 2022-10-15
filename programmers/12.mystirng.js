@@ -8,8 +8,12 @@
 // 모든 strings의 원소의 길이는 n보다 큽니다.
 // 인덱스 1의 문자가 같은 문자열이 여럿 일 경우, 사전순으로 앞선 문자열이 앞쪽에 위치합니다.
 
-
 function solution(strings, n) {
+
+    // 1. strings의 n번째 친구를 strings의 el 맨앞에 붙임
+    // usun, ebed, acar
+    // 얘들을 sort함
+    // 맨 앞에 값 지움
     let arr = []
     let answer = []
     arr = strings.map((el)=> `${el[n]}${el}`)

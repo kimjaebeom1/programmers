@@ -10,7 +10,6 @@ function solution(numbers) {
       }
     }
     // 2. 중복값제거
-        let uniqueSet = new Set(arr)
         let uniqueArr = [...new Set(arr)]
         
     // 3. 오름차순

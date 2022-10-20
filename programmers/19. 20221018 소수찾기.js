@@ -4,23 +4,14 @@
 // 소수는 1과 자기 자신으로만 나누어지는 수를 의미합니다.
 // (1은 소수가 아닙니다.)
 
-
-
 function solution(n) {
-    let answer = [];
-    
-    function isPrime (n) {
-      for(let x of answer) {
-        if(x>Math.sqrt(n))return true
-        if(Number.isInteger(n/x)) return false
+    let arr = new Array(n).fill(1);
+    arr[0] = 0;
+  
+    for (i = 2; i * i <= n; i++) {
+      for (j = i * i; j <= n; j += i) {
+        arr[j - 1] = 0;
       }
-      return true
     }
-    
-    for(let i=2; i<=n; i++) {
-          if(!i%2) continue
-      if(isPrime(i)) answer.push(i)
-    }
-    
-    return answer.length;
+    return arr.filter((el) => el === 1).length;
   }

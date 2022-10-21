@@ -16,7 +16,6 @@ const isBonus = ["S","D","T"]
 
 function solution(dartResult){ 
       const answer = [];
-    
     let score = ""; // 점수만 뽑아서 저장하는 변수
     for( let i = 0; i < dartResult.length; i++ ) {
         if( isNaN( dartResult[i] ) === false ) {

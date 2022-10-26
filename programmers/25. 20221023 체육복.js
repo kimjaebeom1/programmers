@@ -2,27 +2,15 @@
 
 // 전체 학생의 수 n, 체육복을 도난당한 학생들의 번호가 담긴 배열 lost, 여벌의 체육복을 가져온 학생들의 번호가 담긴 배열 reserve가 매개변수로 주어질 때, 체육수업을 들을 수 있는 학생의 최댓값을 return 하도록 solution 함수를 작성해주세요.
 
-function solution(n, lost, reserve) {
-    //1. 본인이 잃어버리고 본인이 여유분이 있는 경우를 먼저 판단 -> 다른사람을 빌려줄수없으므로
-    for(let i = 0 ; i< reserve.length;i++){
-        let haslost = lost.some((el)=> el == reserve[i])
-        if (haslost){
-            lost = lost.filter((el)=> el !== reserve[i])
-            reserve[i] = 0;
+    function solution(n, lost, reserve) {
+        //     1. 도난당한 사람과 빌려줄 수 있는 사람이 같은 사람 구하기
+              const same = reserve.filter((el)=> lost.includes(el)).length
+        //     2. 도난당한 사람과 빌려줄 수 있는 사람이 다른 배열 구하기
+              const differentLost = lost.filter((el) => !reserve.includes(el))
+        //     3. 빌려줄 수 있는 사람과 도난당한 사람이 다른 배열 구하기
+              const differentReserve = reserve.filter((el)=> !lost.includes(el))
+        //     4. 3번배열과 2번배열을 비교해서 빌려줄 수 있는지 없는지 판단하는 값 구하기
+              const possible = differentReserve.filter((el)=> differentLost.includes(el+1)||differentLost.includes(el-1)).length
+        //     5. 결과값은 전체 학생 수 - 잃어버린 사람 + 같은사람 + 빌려줄 수 있는 사람(예외는 빌려줄 수 있는 사람이 많을 때)
+           return n - lost.length + possible + same > n ? n : n - lost.length + same + possible
         }
-    }
-    reserve = reserve.filter(v=>v)
-
-    //2. 양 옆 사람중 여유분이 있는지 판단.
-    for(let i = 0 ; i< reserve.length;i++){
-        for(let j = 0 ; j< lost.length;j++){
-            if (Math.abs(reserve[i]-lost[j])<=1){
-                reserve[i] = 0
-                lost[j] = 0
-                break;
-            }
-        }
-
-    }
-    return n - lost.filter(v=>v).length
-}

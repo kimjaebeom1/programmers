@@ -11,12 +11,13 @@ function solution(X, Y) {
   let result = 0;
   //     2. x의 길이가 더 길면 이중 for문 x배열 -> y배열
   //     2-1. 비교해서 같은 값이 있으면 그 값을 새 배열에 push, y배열에서 그 값은 제거
-  if (x.length >= x.length) {
+  if (x.length >= y.length) {
     for (let i = 0; i < x.length; i++) {
       for (let j = 0; j < y.length; j++) {
         if (x[i] === y[j]) {
           arr.push(y[j]);
           y.splice(j, 1);
+          break;
         }
       }
     }
@@ -29,6 +30,7 @@ function solution(X, Y) {
         if (y[i] === x[j]) {
           arr.push(x[j]);
           x.splice(j, 1);
+          break;
         }
       }
     }

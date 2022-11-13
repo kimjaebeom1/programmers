@@ -25,3 +25,11 @@ function solution(n) {
   return parseInt(newArr[0], 2);
 }
 // 테스트케이스는 모두 통과하지만, 효율성을 하나도 못통과함 ㅠ
+
+function solution(n) {
+  const oneNum = n.toString(2).split("1").length;
+  while (true) {
+    n++;
+    if (n.toString(2).split("1").length === oneNum) return n;
+  }
+}

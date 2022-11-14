@@ -33,3 +33,4 @@ function solution(n) {
     if (n.toString(2).split("1").length === oneNum) return n;
   }
 }
+// 1. 이진법으로 변환후 while문을 돌며 n을 1씩키우고, 2진수로 바뀐 문자열에서 1의 갯수를 비교하여 같으면 반환

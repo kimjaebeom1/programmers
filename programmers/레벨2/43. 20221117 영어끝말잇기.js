@@ -31,24 +31,21 @@
 // 만약 주어진 단어들로 탈락자가 생기지 않는다면, [0, 0]을 return 해주세요.
 
 function solution(n, words) {
-  let answer = [0, 0];
+  let temp = [words[0]];
 
-  for (let i = 0; i < words.length; i++) {
-    let word = words[i];
-    let p = (i % n) + 1;
-    let turn = Math.ceil((i + 1) / n);
-
-    if (i > 0) {
-      // 이전 단어 마지막 글자
-      let last = words[i - 1].split("").pop();
-
-      // 중복이거나 틀린 경우
-      if (i > words.indexOf(word) || words[i][0] !== last) {
-        answer = [p, turn];
-        break;
-      }
+  for (let i = 1; i < words.length; i++) {
+    // 1. 중복된 값이 없고, 끝말잇기 규칙이 맞으면 temp에 넣기
+    if (
+      !temp.includes(words[i]) &&
+      words[i - 1][words[i - 1].length - 1] === words[i][0]
+    ) {
+      temp.push(words[i]);
+    }
+    //         2. 계속 푸시하다 안되면 규칙이 [가장먼저 탈락, 차례]
+    else {
+      return [(i % n) + 1, Math.floor(i / n) + 1];
     }
   }
-
-  return answer;
+  // 3. 다 통과하면
+  return [0, 0];
 }

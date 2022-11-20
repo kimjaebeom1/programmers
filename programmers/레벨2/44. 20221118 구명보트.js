@@ -11,3 +11,21 @@
 // 각 사람의 몸무게는 40kg 이상 240kg 이하입니다.
 // 구명보트의 무게 제한은 40kg 이상 240kg 이하입니다.
 // 구명보트의 무게 제한은 항상 사람들의 몸무게 중 최댓값보다 크게 주어지므로 사람들을 구출할 수 없는 경우는 없습니다.
+
+function solution(people, limit) {
+  //     1. 내림차순(가장 무거운 사람이랑 가장 가벼운사람의 합이 limit 이하면 태워보냄, 만약에 안되면 누가와도 못탐)
+  let sortedPeople = people.sort((a, b) => a - b);
+  let start = 0;
+  let end = people.length - 1;
+  let answer = 0;
+
+  while (start < end) {
+    if (sortedPeople[start] + sortedPeople[end] <= limit) {
+      start += 1;
+    }
+    end -= 1;
+    answer += 1;
+  }
+  //     2. 혼자 남았을 경우 +1 해줌(가장 무거운 사람과 가장 가벼운 사람이 동일하면)
+  return start === end ? answer + 1 : answer;
+}

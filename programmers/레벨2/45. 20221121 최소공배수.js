@@ -22,3 +22,14 @@ function solution(arr) {
   answer = arr[0] * n;
   return answer;
 }
+
+// 다른풀이
+
+function getGcd(a, b) {
+  if (b === 0) return a;
+  return getGcd(b, a % b);
+}
+
+function solution(arr) {
+  return arr.reduce((a, b) => (a * b) / getGcd(a, b));
+}
